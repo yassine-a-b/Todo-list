@@ -1,0 +1,637 @@
+<DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Tasks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        .colors{
+  
+        
+            background:linear-gradient(359deg, rgba(0, 128, 0, 0.85), rgba(0, 255, 255, 0.85), rgba(2, 1, 1, 0.85)),url("list.png");
+           
+            background-blend-mode: multiply;
+            height: 200vh;
+            background-size:cover;
+
+
+        }
+
+        .title {
+            color: white;
+            font-size: medium;
+        }
+
+        .form,
+        .title {
+            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5rem;
+        }
+
+        .addtodo,
+        .btn {
+            padding: 1rem;
+            border: 0;
+            font-size: 1.87rem;
+            outline: none;
+            background: white;
+            border-radius:53px;
+        }
+
+        .btn {
+            cursor: pointer;
+            position:absolute;
+            transition: all 0.24s ease-in;
+            color: black;
+            right:14.5em;
+            width:12rem;
+            
+        }
+        .btn {
+            height:3px;
+            width:3px;
+            background:url("https://img.icons8.com/color/48/000000/plus--v3.png"), rgb(255, 255, 255);
+            background-blend-mode:multiply;
+            background-size: cover;
+        }
+
+        .btn:focus {
+            height:3px;
+            width:3px;
+          
+            color: rgb(243, 246, 250);
+            background:url("https://img.icons8.com/color/48/000000/plus--v3.png"), rgb(58, 252, 28);
+            background-size: cover;
+        }
+
+        .contain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .list {
+            list-style: none;
+            min-width: 30%;
+
+        }
+
+        .li {
+            position:relative;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 1rem;
+            transition: all 0.52s ease;
+
+        }
+
+        .txt {
+            flex: 1;
+            margin: 6px;
+            font-size: 1.34rem;
+        
+           
+        }
+
+        .delete,
+        .complete {
+            background: rgb(97, 253, 97);
+            padding: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .delete {
+            background: rgb(241, 112, 65);
+           
+        }
+        .delete img{
+            height:22px;
+            pointer-events: none;
+        text-shadow: rgb(19, 20, 19) 3px 2px 2px; 
+        }
+        .complete img{
+            height:22px;
+            pointer-events: none;
+        text-shadow: rgb(19, 20, 19) 3px 2px 2px; 
+        }
+
+        .done {
+            opacity: 0.55;
+            text-decoration: line-through;
+
+        }
+
+        .det {
+            transform: translateY(201px) rotateZ(33deg);
+            opacity: 0.21;
+        }
+
+        select {
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            border: none;
+
+        }
+
+        .select {
+
+            position: relative;
+            margin: 1rem;
+
+
+        }
+
+        select {
+            padding: 1rem;
+            cursor: pointer;
+            color: green;
+            width: 10rem;
+
+
+        }
+
+        .select::after {
+            overflow: none;
+            content: "\25BC";
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: purple;
+            pointer-events: none;
+            transition: all 0.22s;
+            padding: 14px 14px;
+
+        }
+
+        .select:hover::after {
+            background: rgb(218, 20, 218);
+        }
+        .date{
+            position:absolute;
+            margin:-1rem;
+            right:14em;
+            font-size:0.55rem;
+            opacity:0.86;
+            font-weight:bold;
+            color:rgb(59, 59, 59);
+        }
+        .bgcolor button{
+            position:absolute;
+            height: 33px;
+            width:33px;
+            border-radius:22px;
+            right:155vh;
+            top:16em;
+            overflow: hidden;
+            
+            
+
+        }
+        .imgs{
+            height:38px;
+            width:38px;
+        position: absolute;
+    
+            justify-content: center;
+            align-items: center;
+            left:-4px;
+            top:-4px;
+            
+        }
+        .mini img{
+            background-image:url('mini.png');
+            display:block;
+            position:absolute;
+            height:177px;
+            width:188px;
+            justify-content:center;
+         align-items:center;
+         text-align: center;
+         top:55vh;
+         right:543;
+
+        }
+    
+    
+    </style>
+</head>
+
+
+<body class="colors">
+    <section class="title">
+        <h2>to DO List</h2>
+    </section>
+   
+    <form class="form">
+        <div class="bgcolor">
+            <button  type="button" value="color"><img class="imgs" src="https://img.icons8.com/color/48/000000/rgb-circle-1--v1.png"/></button>
+        </div>
+        <input class="addtodo" placeholder="add" type="add">
+        <button class="btn" type="submit"><i class="icoin"></i></button>
+        <div class="select"><select class="filter"><option value="all">all</option><option value="uncomplete">uncomplete</option><option value="complete">complete</option></select></div>
+        <div class="mini"><img src="mini.png"></div>
+    </form>
+
+    <div class="contain">
+        <ul class="list"></ul>
+
+    </div>
+
+    <script>
+        const list = document.querySelector(".list")
+        const bg = document.querySelector(".bgcolor")
+        const btn = document.querySelector(".btn")
+        const input = document.querySelector(".addtodo")    
+        const fil = document.querySelector(".filter")
+        const col = document.querySelector(".colors")
+        const mini = document.querySelector(".mini")
+        let booleans;
+        list.addEventListener('click', det)
+     locals()
+        btn.addEventListener('click', add)
+        fil.addEventListener('click', acts)
+        bg.addEventListener('click', paint)
+        var s= col.style.backgroundColor="green"
+        function paint(){
+          
+           if(s=='green')
+            s= col.style.backgroundColor="red"
+            else if(s=="red"){
+                s= col.style.backgroundColor=""
+            }else
+            s= col.style.backgroundColor="green"
+        }
+        
+
+    var time= new Date()
+
+   
+    var old= new Date( '02/27/2022 13:40:00')
+   var  remain=(old/1000)-(time/1000)
+   let date=Math.round(remain/3600)
+   
+
+
+        function add(event) {
+            event.preventDefault()
+if(!input.value.trim()==""){
+            const div = document.createElement("div");
+            div.classList.add("li")
+            const li = document.createElement("li")
+            li.classList.add("txt")
+        
+            div.appendChild(li)
+       
+//booleans=false
+            li.innerText = input.value;
+            if(input.value){
+                mini.style.display="none"
+            }
+            save(input.value,time)
+    
+           
+            
+            var time=document.createElement("spam")
+            time.classList.add("date")
+           
+            time.innerText="now"
+            div.appendChild(time)
+
+            //delete
+            const l = document.createElement("button")
+            l.classList.add("delete")
+            l.innerHTML = '<img src="https://img.icons8.com/color/48/000000/cancel--v1.png"/>'
+            div.appendChild(l)
+            //complete
+            const c = document.createElement("button")
+            c.classList.add("complete")
+            c.innerHTML = ' <img src="https://img.icons8.com/color/48/000000/ok--v1.png"/>'
+            div.appendChild(c)
+            list.appendChild(div)
+          
+}
+            input.value = ""
+
+        }
+        var min=(time.getMinutes()<10)? '0'+time.getMinutes():time.getMinutes()
+        var day=time.getDay()
+        console.log(day)
+        var days=["sunday","monday","tuesday","wednesday",'thuerday','friday','saturday']
+        time=time.getHours()
+        function det(a) {
+            //delete
+            let det = a.target.classList[0]
+            let pnt = a.target.parentElement;
+            let w=pnt.children[0].innerText
+            if (det == "delete") {
+                 remove(w)
+                pnt.classList.add('det')
+                
+                pnt.addEventListener('transitionend', function () {
+                    pnt.remove()
+                })
+                // 
+            }
+           var el= pnt.childNodes[1]
+            //done
+           
+            if (det == 'complete') {
+               console.log(time,'time')
+                if(time>12){
+                    var s=time%12||12
+                    s=(s<10)?'0'+s:s
+                }
+                
+                 var completedAt="Completed in: "+days[day]+' - '+s+':'+min
+                 el.innerText=completedAt
+            pnt.classList.toggle("done");
+              
+            a=JSON.parse(localStorage.getItem('s'))
+           a.forEach(e=>
+           {
+                if(e.text==w)
+                {
+                    var todoObj=new Todo()
+                    todoObj.copy(e)
+                   // e.booleans= !e.booleans
+                    //e.completedAt=(e.completedAt=='')?completedAt:''
+                    todoObj.toggleComplet()
+                    todoObj.setCompletedAt(completedAt)
+                    
+                    if(e.completed)
+                
+                    {
+                        //el.innerText=getTimeAgo(e.date)+ ' ago'
+                        el.innerText=todoObj.getTimeAgo()+ ' ago'
+
+                    }
+                    e.date=todoObj.date
+                    e.text=todoObj.text
+                    e.completed=todoObj.completed
+                    e.completedAt=todoObj.completedAt
+                    //console.log(e,todoObj)
+                }
+                
+                
+           })
+            localStorage.setItem("s",JSON.stringify(a))
+                
+                
+             
+            }
+        }
+        function acts(a) {
+            var x = a.target.childNodes;
+            var ss = list.childNodes
+            var aa = list.childNodes 
+            
+            ss.forEach((el, index) => {
+      
+              
+              
+                switch (a.target.value) {
+                    case "all":
+                    el.style.display="block"
+                    el.style.display="flex"
+                        break;
+                    case "uncomplete":
+                    if (aa[index].classList.contains("done")) {
+                            el.style.display="block"
+                            el.style.display="flex"
+                        
+                         }else{
+                            el.style.display="none"
+                         }
+
+
+                        break;
+                    case "complete":
+                    if (aa[index].classList.contains("done")) {
+                            el.style.display="block"
+                            el.style.display="flex"
+                           
+                        
+                         }else{
+                            el.style.display="none"
+                         }
+
+                        break;
+                }
+
+            });
+
+
+        }
+        function save(s,t,aa){
+             
+console.log(s,t)
+               let a;
+            if(localStorage.getItem('s')==null){
+                a=[]
+            }else{
+               a=JSON.parse(localStorage.getItem('s'))
+
+            }
+         
+           // a.push({date:new Date(),text:s,booleans:false,completedAt:''})
+           var todoObject=new Todo(s,new Date())
+            a.push(todoObject)
+            localStorage.setItem("s",JSON.stringify(a))
+            
+
+        }
+       
+       class Todo{
+           text='';
+           date='';
+           completed=false;
+           completedAt='';
+           constructor(text,date)
+           {
+               this.text=text
+               this.date=date
+               
+           }
+           copy(todo)
+           {
+            this.text=todo.text
+            this.date=todo.date
+            this.completed=todo.completed
+            this.completedAt=todo.completedAt
+           }
+           getText()
+           {
+            return this.text
+           }
+           getDate()
+           {
+               return this.date
+           }
+           setCompleted()
+           {
+               this.completed=true
+           }
+           setCompletedAt(date)
+           {
+               this.completedAt=(this.completed)?date:''
+           }
+           toggleComplet()
+           {
+               this.completed=!this.completed
+           }
+           getTimeAgo()
+           {
+            var  remain=((new Date()/1000)-(new Date(this.date)/1000))
+                //   if(>24){
+            //         remain=Math.round(remain/86400)
+            //     }
+            var tim=`${Math.round(remain)} second`
+            
+            var second=Math.round(remain)
+            var minute=Math.round(remain/60)
+            var hour=Math.round(remain/3600)
+            
+            //second=-2222
+            if(second>=60){
+                tim=`${Math.round(remain/60)} minute`
+            }
+            if(minute>=60){
+                tim=`${Math.round(remain/3600)} hour`
+            }
+            if(hour>=24){
+                tim=`${Math.round(remain/86400)} day`
+            }
+            return tim;
+           }
+
+       }
+     function locals(){
+     
+        let a;
+       
+            if(localStorage.getItem('s')==null){
+                a=[]
+            }else{
+               a=JSON.parse(localStorage.getItem('s'))
+
+            }
+           
+            
+            a.forEach((el,index)=>{
+              console.log()  
+              if(!el.text==""){
+                mini.style.display="none"}
+                const div = document.createElement("div");
+            div.classList.add("li")
+          
+            const li = document.createElement("li")
+            li.classList.add("txt")
+            if(el.completed){
+                div.classList.add("done")
+            }
+            div.appendChild(li)
+            li.innerText =el.text
+             
+            var time=document.createElement("spam")
+            time.classList.add("date")
+
+            var tim=getTimeAgo(el.date)
+        
+            time.innerText=tim+" " +"ago"
+            if(el.completedAt!='')
+            {
+                time.innerText=el.completedAt
+            }
+            div.appendChild(time)
+
+           
+            //delete
+            const l = document.createElement("button")
+            l.classList.add("delete")
+            l.innerHTML ='<img src="https://img.icons8.com/color/48/000000/cancel--v1.png"/>'
+            div.appendChild(l)
+            //complete
+            const c = document.createElement("button")
+            c.classList.add("complete")
+            c.innerHTML = ' <img src="https://img.icons8.com/color/48/000000/ok--v1.png"/>'
+            div.appendChild(c)
+            list.appendChild(div)
+            })
+     }
+     function remove(aw){
+            let a;
+            if(localStorage.getItem('s')==null){
+                a=[];
+            }else{
+               a=JSON.parse(localStorage.getItem('s'))
+
+            }
+        
+           var aa=a.indexOf(aw)
+            
+        
+         a.splice(aa,1)
+         
+       
+         localStorage.setItem("s",JSON.stringify(a))
+         
+}
+
+function getTimeAgo(dateCreation)
+{
+    var  remain=((new Date()/1000)-(new Date(dateCreation)/1000))
+                //   if(>24){
+    //         remain=Math.round(remain/86400)
+    //     }
+    var tim=`${Math.round(remain)} second`
+    
+    var second=Math.round(remain)
+    var minute=Math.round(remain/60)
+    var hour=Math.round(remain/3600)
+    
+    //second=-2222
+    if(second>=60){
+        tim=`${Math.round(remain/60)} minute`
+    }
+    if(minute>=60){
+        tim=`${Math.round(remain/3600)} hour`
+    }
+    if(hour>=24){
+        tim=`${Math.round(remain/86400)} day`
+    }
+    return tim;
+}
+// var text='test object'
+// var dateObj=new Date()
+// var ob=new Todo(text,dateObj)
+// ob.setCompletedAt(new Date())
+// ob.setCompleted()
+// console.log('Ob time ago: ',ob.getTimeAgo(),ob)
+
+
+
+    </script>
+</body>
+
+</html>
